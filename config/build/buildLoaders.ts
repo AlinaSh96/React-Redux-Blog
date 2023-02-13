@@ -1,20 +1,50 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack, { web } from 'webpack';
-import { BuildOptins } from './types/config';
+import { BuildOptions } from './types/config';
 
-export function buildLoaders({isDev}: BuildOptins): webpack.RuleSetRule[] {
+export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+
+    const babelLoader = {
+        test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-env'],
+                plugins: [
+                    [
+                        'i18next-extract',
+                        {
+                            locales: ['en', 'fr'],
+                            keyAsDefaultValue: false,
+                            saveMissing: true,
+                            outputPath: 'public/locales/{{locale}}/{{ns}}.json',
+                        },
+                    ],
+                ],
+            },
+        },
+    }
+
+
     const cssLoaders = {
         test: /\.s[ac]ss$/i,
         use: [
             isDev ? "style-loader" : MiniCssExtractPlugin.loader,
             {
-                loader:  "css-loader",
+                loader: "css-loader",
                 options: {
                     modules: {
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-                        localIdentName: isDev 
-                        ? '[path][name]__[local]--[hash:base64:5]' 
-                        : '[hash:base64:8]'
+                        localIdentName: isDev
+                            ? '[path][name]__[local]--[hash:base64:5]'
+                            : '[hash:base64:8]'
                     }
                 }
             },
@@ -27,8 +57,21 @@ export function buildLoaders({isDev}: BuildOptins): webpack.RuleSetRule[] {
         use: 'ts-loader',
         exclude: /node_modules/,
     };
+
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    }
+
     return [
-        typeScriptLoader, 
-         cssLoaders
+        fileLoader,
+        svgLoader,
+        babelLoader,
+        typeScriptLoader,
+        cssLoaders,
     ]
 }
