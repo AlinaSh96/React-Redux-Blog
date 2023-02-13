@@ -3,7 +3,6 @@ import { Theme, useTheme } from 'app/providers/ThemeProvider';
 import LightIcon from 'shared/assets/icons/theme-light.svg';
 import DarktIcon from 'shared/assets/icons/theme-dark.svg';
 import Button, { ThemeButton } from 'shared/ui/Button/Button';
-import cls from './ThemeSwither.module.scss';
 
 interface ThemeSwitherProps {
 className?: string;
@@ -15,7 +14,7 @@ export const ThemeSwither = ({ className }: ThemeSwitherProps) => {
     return (
         <Button
             theme={ThemeButton.CLEAR}
-            className={classNames(cls.ThemeSwither, {}, [className])}
+            className={classNames('', {}, [className])}
             onClick={toggleTheme}
         >
             {theme === Theme.DARK ? <DarktIcon /> : <LightIcon />}
