@@ -8,7 +8,7 @@ interface ThemeSwitherProps {
 className?: string;
 }
 
-export const ThemeSwither = ({ className }: ThemeSwitherProps) => {
+export const ThemeSwitcher = ({ className }: ThemeSwitherProps) => {
     const { theme, toggleTheme } = useTheme();
 
     return (
@@ -21,4 +21,4 @@ export const ThemeSwither = ({ className }: ThemeSwitherProps) => {
         </Button>
     );
 };
-export default ThemeSwither;
+export default ThemeSwitcher;

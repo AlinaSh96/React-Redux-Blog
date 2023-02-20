@@ -1,4 +1,3 @@
-import { ECDH } from 'crypto';
 import React from 'react';
 
 const jestEmptyComponent = function () {
