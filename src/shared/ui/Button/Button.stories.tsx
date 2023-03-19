@@ -6,7 +6,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { Button, SizeButton, ThemeButton } from './Button';
 
 export default {
-    title: 'ui/Button',
+    title: 'shared/Button',
     component: Button,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -95,4 +95,11 @@ SquareSizeM.args = {
     theme: ThemeButton.BACKGROUND_INVERTED,
     square: true,
     size: SizeButton.M,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+    children: '>',
+    theme: ThemeButton.OUTLINE,
+    disabled: true,
 };
