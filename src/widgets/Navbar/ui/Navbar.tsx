@@ -1,6 +1,6 @@
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import AppLink, { AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import Button, { ThemeButton } from 'shared/ui/Button/Button';
@@ -13,7 +13,7 @@ interface NavbarProps {
     className?: string;
 }
 
-export const Navbar = ({ className }: NavbarProps) => {
+export const Navbar = memo(({ className }: NavbarProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation('main');
     const [isAuthModal, setIsAuthModal] = useState(false);
@@ -61,6 +61,6 @@ export const Navbar = ({ className }: NavbarProps) => {
             ) }
         </div>
     );
-};
+});
 
 export default Navbar;
