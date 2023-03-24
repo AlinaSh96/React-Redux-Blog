@@ -9,6 +9,7 @@ import { Sidebar } from 'widgets/Sidebar';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'entities/User';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
     // const t = useTranslation('main');
