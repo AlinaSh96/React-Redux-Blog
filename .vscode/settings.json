@@ -17,5 +17,8 @@
         "css",
         "scss"
     ],
-        "files.eol": "\n",
+    "files.eol": "\n",
+    "files.associations": {
+      "**/.fttemplates/**": "plaintext",
+    }
 }
