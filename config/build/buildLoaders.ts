@@ -1,6 +1,6 @@
 import webpack from 'webpack';
-import { BuildOptions } from './types/config';
 import { buildCssLoader } from './loaders/buildCssLoader';
+import { BuildOptions } from './types/config';
 
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     const svgLoader = {
@@ -9,7 +9,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     };
 
     const babelLoader = {
-        test: /\.(js|jsx|ts|tsx)$/,
+        test: /\.(js|jsx|tsx)$/,
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
@@ -19,10 +19,8 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
                     [
                         'i18next-extract',
                         {
-                            locales: ['en', 'fr'],
-                            keyAsDefaultValue: false,
-                            saveMissing: true,
-                            outputPath: 'public/locales/{{locale}}/{{ns}}.json',
+                            locales: ['ru', 'en'],
+                            keyAsDefaultValue: true,
                         },
                     ],
                 ],
@@ -30,9 +28,10 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         },
     };
 
-    const cssLoaders = buildCssLoader(isDev);
+    const cssLoader = buildCssLoader(isDev);
 
-    const typeScriptLoader = {
+    // Если не используем тайпскрипт - нужен babel-loader
+    const typescriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
@@ -51,7 +50,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         fileLoader,
         svgLoader,
         babelLoader,
-        typeScriptLoader,
-        cssLoaders,
+        typescriptLoader,
+        cssLoader,
     ];
 }
