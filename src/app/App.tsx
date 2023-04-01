@@ -2,19 +2,17 @@
 /* eslint-disable i18next/no-literal-string */
 import React, { Suspense, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInited, userActions } from 'entities/User';
 
 function App() {
     // const t = useTranslation('main');
     const dispatch = useDispatch();
 
+    const inited = useSelector(getUserInited);
     useEffect(() => {
         dispatch(userActions.initAuthData());
     }, [dispatch]);
@@ -25,7 +23,7 @@ function App() {
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />
-                    <AppRouter />
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>
