@@ -1,29 +1,36 @@
-import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Article, ArticleList, ArticleView } from 'entities/Article';
-import cls from './ArticlePage.module.scss';
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-interface ArticlePageProps {
-   className?: string;
-}
+import { ArticleList } from './ArticleList';
+import { Article, ArticleView } from '../../model/types/article';
+
+export default {
+    title: 'entities/Article/ArticleList',
+    component: ArticleList,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as ComponentMeta<typeof ArticleList>;
+
+const Template: ComponentStory<typeof ArticleList> = (args) => <ArticleList {...args} />;
+
 const article = {
     id: '1',
-    title: 'Javascript news',
-    user: {
-        id: '1',
-        username: 'admin213',
-        avatar: 'https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg',
-    },
+    title: 'Javascript news asfasjf asfjkask f',
     subtitle: 'Что нового в JS за 2022 год?',
     img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
     views: 1022,
     createdAt: '26.02.2022',
+    user: {
+        id: '1',
+        username: 'Ulbi tv',
+        avatar: 'https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg',
+    },
     type: [
         'IT',
         'SCIENCE',
         'POLITICS',
-        'IT',
+        'ECONOMICS',
     ],
     blocks: [
         {
@@ -86,26 +93,41 @@ const article = {
         },
     ],
 } as Article;
-const ArticlePage = (props: ArticlePageProps) => {
-    const { className } = props;
-    const { t } = useTranslation('article');
 
-    return (
-        <div className={classNames(cls.articlePage, {}, [className])}>
-            <ArticleList
-                isLoading
-                view={ArticleView.LIST}
-                articles={
-                    new Array(16)
-                        .fill(0)
-                        .map((item, index) => ({
-                            ...article,
-                            id: String(index),
-                        }))
-                }
-            />
-        </div>
-    );
+export const LoadingBig = Template.bind({});
+LoadingBig.args = {
+    articles: [],
+    isLoading: true,
+    view: ArticleView.LIST,
 };
 
-export default memo(ArticlePage);
+export const LoadingSmall = Template.bind({});
+LoadingSmall.args = {
+    articles: [],
+    isLoading: true,
+    view: ArticleView.TILE,
+};
+
+export const ListSmall = Template.bind({});
+ListSmall.args = {
+    articles: new Array(9)
+        .fill(0)
+        .map((item, index) => ({
+            ...article,
+            id: String(index),
+        })),
+    isLoading: false,
+    view: ArticleView.TILE,
+};
+
+export const ListBig = Template.bind({});
+ListBig.args = {
+    articles: new Array(9)
+        .fill(0)
+        .map((item, index) => ({
+            ...article,
+            id: String(index),
+        })),
+    isLoading: false,
+    view: ArticleView.LIST,
+};
