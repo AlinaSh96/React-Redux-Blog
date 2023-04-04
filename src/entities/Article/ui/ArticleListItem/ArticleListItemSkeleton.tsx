@@ -15,7 +15,6 @@ interface ArticleListItemSkeletonProps {
 
 export const ArticleListItemSkeleton = memo((props: ArticleListItemSkeletonProps) => {
     const { className, view } = props;
-    console.log(9999);
     if (view === ArticleView.LIST) {
         return (
             <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
