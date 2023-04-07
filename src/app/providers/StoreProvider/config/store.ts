@@ -6,6 +6,7 @@ import { To } from 'history';
 import { NavigateOptions } from 'react-router';
 import { CombinedState, Reducer } from 'redux';
 import { counterReducer } from 'entities/Counter/model/slice/CounterSlice';
+import { ScrollSaveReducer } from 'features/ScrollSave';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -17,6 +18,7 @@ export function createReduxStore(
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
+        scrollSave: ScrollSaveReducer,
     };
 
     const reducerManager = createReducerManager(rootReducers);
