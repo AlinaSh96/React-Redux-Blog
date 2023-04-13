@@ -13,8 +13,8 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEf
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { AddCommentForm } from 'features/addCommentForm';
 import { Page } from 'widgets/Page/Page';
-import { getArticleRecommendationIsLoading } from 'pages/ArticleDetailsPage/model/selectors/recomendations';
-import { articleDetailsPageRecuder } from 'pages/ArticleDetailsPage/model/slice';
+import { articleDetailsPageRecuder } from '../../model/slice';
+import { getArticleRecommendationIsLoading } from '../../model/selectors/recomendations';
 import { getArticleRecommendations }
     from '../../model/slice/ArticleDetailsPageRecomendationSlice';
 import { fetchArticleRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';

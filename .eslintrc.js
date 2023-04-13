@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
+        'fsd-path-checker-plugin-al_sch',
     ],
     rules: {
         'linebreak-style': 0,
@@ -58,6 +59,7 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-undef': 'off',
         'react/no-array-index-key': 'off',
+        'fsd-path-checker-plugin-al_sch/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,
