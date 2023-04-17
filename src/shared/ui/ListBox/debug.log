@@ -1,0 +1,5 @@
+[0417/224545.331:ERROR:registration_protocol_win.cc(107)] CreateFile: Не удается найти указанный файл. (0x2)
+[0417/224907.367:ERROR:registration_protocol_win.cc(107)] CreateFile: Не удается найти указанный файл. (0x2)
+[0417/224907.406:ERROR:registration_protocol_win.cc(107)] CreateFile: Не удается найти указанный файл. (0x2)
+[0417/225243.953:ERROR:registration_protocol_win.cc(107)] CreateFile: Не удается найти указанный файл. (0x2)
+[0417/225244.059:ERROR:registration_protocol_win.cc(107)] CreateFile: Не удается найти указанный файл. (0x2)
